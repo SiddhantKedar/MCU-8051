@@ -1,0 +1,17 @@
+	ORG	000H
+	LJMP	MAIN
+
+	ORG	0050H
+MAIN:
+	MOV	TMOD, #01H	; This is Timer 0 Mode 1
+extc:	MOV	TH0, #0ECH	; This is loading the value 65526 into Timer
+	MOV	TL0, #078H
+	SETB	TR0		;Starting the Timer
+dbit:	JNB	TF0, dbit	;Looping to check TF0 flag
+	CLR	TR0		;To stop Timer
+	CLR	TF0		; To Clear the overfloe flag
+	CPL	P2.4		; To complement the p2.4
+	SJMP	extc
+
+
+	END
