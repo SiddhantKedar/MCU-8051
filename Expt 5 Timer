@@ -1,0 +1,12 @@
+	ORG	000H
+	LJMP	MAIN
+
+	ORG	0050H
+MAIN:	MOV	TMOD, #01H	; This is Timer 0 Mode 1
+	MOV	TH0, #0FFH	; This is loading the value 65526 into Timer
+	MOV	TL0, #0F6H
+	SETB	TR0		;Starting the Timer
+
+dbit:	JNB	TF0, dbit	;Looping to check TF0 flag
+	END
+
