@@ -1,0 +1,61 @@
+;SEVEN SEGMENT Display
+
+;MOV P1  , #3FH ; DISPLAY 0
+;ACALL delay
+
+;MOV P1  , #06H ; DISPLAY 1
+;ACALL delay
+
+;MOV P1  , #5BH ; DISPLAY 2
+;ACALL delay
+
+;MOV P1  , #4FH ; DISPLAY 3
+;ACALL delay
+
+;MOV P1  , #5FH ; DISPLAY 4
+;ACALL delay
+
+;MOV P1  , #6FH ; DISPLAY 5
+;ACALL delay
+
+;MOV P1  , #7FH ; DISPLAY 6
+;ACALL delay
+
+;MOV P1  , #8FH ; DISPLAY 7
+;ACALL delay 
+
+;MOV P1  , #9FH ; DISPLAY 8 
+;ACALL delay
+
+;MOV P1  , #3BH ; DISPLAY 9
+;ACALL delay 
+
+CLR P1.4
+CLR P1.2
+CLR P1.5
+ACALL delay
+
+CLR P1.7
+CLR P1.6
+CLR P1.2
+ACALL delay
+
+SETB P1.4
+SETB P1.2
+SETB P1.5
+ACALL delay
+
+SETB P1.7
+SETB P1.6
+SETB P1.2
+ACALL delay
+
+delay:
+MOV A,#0FFH
+repeat:
+	DEC a
+        JNZ repeat
+
+ret
+end
+
