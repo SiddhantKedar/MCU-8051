@@ -1,0 +1,30 @@
+; Expt 6 timer Interrupts
+;Shreeya Pimple roll no e-4
+; Pranjali Raval rolll no e 10
+
+; basic template to write assembly code
+
+	ORG	0000H
+	LJMP	MAIN
+	ORG	001BH		; Interrupt Service Routine
+	CPL	P2.5
+	MOV	TMOD, #10H	;Timer 1 Mode 1
+	MOV	TH1, #0F0H	;Delay of 4 mili sec
+	MOV	TL1, #060H
+	RETI
+
+
+	ORG	0040H
+MAIN:
+	MOV	TMOD, #10H	;Timer 1 Mode 1
+	MOV	TH1, #0F0H	;Delay of 4 mili sec
+	MOV	TL1, #060H
+	SETB	TR1		;Start Timer 1
+	MOV	IE, #88H
+labelx:				; iNFINITE LOOP
+	MOV	A, #55H
+	DEC	A
+	MOV	B, A
+	DEC	B
+	SJMP	LABELX
+	END
